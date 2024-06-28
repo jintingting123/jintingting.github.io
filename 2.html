@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission2</title>
+</head>
+<body>
+    <p class="content"></p>
+    请输入一个名字：<input type="text" class="text1"></input>
+    <button type="button" id="button1" class="generate">点击生成笑话</button>
+</body>
+<script>
+    // 1. 我们需要将一句话展现在html的p标签中
+    var content = '这句话会展现出来';
+    
+    // 2. 生成一个随机笑话，放入content中
+    var joke = generateJoke();
+    //  3. 为按钮新增一个点击事件
+    btn = document.querySelector("#button1");
+    btn.addEventListener('click', clickButton);
+    // p.innerHTML = joke;
+
+
+    // 生成一个笑话 
+    function generateJoke() {
+
+        var targetUsers = ['xh','ni','hj','sjds','sd'];
+        var places = ['体育馆','足球场','操场','教室','食堂'];
+        var actions = ['在人行道化成水','变成一扇门','变成鸟飞走了','突然自燃','瘦成一道闪电'];
+
+        // 随机拿到数组的一个元素
+        var targetUser = getElement(targetUsers);
+        var place = getElement(places);
+        var action = getElement(actions);
+        // 拿到text里面的值
+        var sourceUser = document.querySelector(".text1").value || '小明';
+        // var sourceUser = '小明';
+
+        var joke = `今天气温 ${ Math.random() * 30 } 摄氏度，${targetUser}出门散步。当走到${place}门前时，突然就${action}。人们都惊呆了，${sourceUser}全程目睹但并没有慌，因为${targetUser}是一个 140 公斤的胖子，天气又辣么热。`;
+        // 测试一下生成的结果
+        console.log(joke);
+        return joke;
+    }
+
+    function getElement(arr) {
+        var index = Math.floor(Math.random() * arr.length);
+        return arr[index];
+    }
+
+    function clickButton() {
+        // 将笑话显示
+        // 1.拿到p标签
+        var p = document.querySelector(".content");
+        // 2.检查一下
+        console.log(p);
+        // 3.将这句话放在p中
+        content = generateJoke();
+        p.innerHTML = content;
+    }
+</script>
+</html>
